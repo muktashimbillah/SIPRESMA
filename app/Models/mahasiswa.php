@@ -19,14 +19,4 @@ class mahasiswa extends Model
         'ruang',
         'notelp',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'ni', 'nim');
-    }
-
-    public function prestasi()
-    {
-        return $this->hasMany(Prestasi::class, 'nim', 'nim');
-    }
 }

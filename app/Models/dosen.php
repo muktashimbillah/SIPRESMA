@@ -17,14 +17,4 @@ class dosen extends Model
         'fotoprofil',
         'notelp',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'ni', 'nip');
-    }
-
-    public function prestasi()
-    {
-        return $this->hasMany(Prestasi::class, 'nim', 'nip');
-    }
 }

@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+    protected $table = 'users';
 
     protected $fillable = [
         'email',
@@ -18,17 +19,14 @@ class User extends Authenticatable
         'password',
     ];
 
+    // Kolom yang disembunyikan saat serialisasi
     protected $hidden = [
         'password',
+        // 'remember_token',
     ];
 
-
-    public function mahasiswa()
-    {
-        return $this->hasOne(Mahasiswa::class, 'nim', 'ni');
-    }
-    public function dosen()
-    {
-        return $this->hasOne(dosen::class, 'nip', 'ni');
-    }
+    // Kolom yang harus dikonversi ke tipe data asli
+    // protected $casts = [
+    //     'email_verified_at' => 'datetime',
+    // ];
 }

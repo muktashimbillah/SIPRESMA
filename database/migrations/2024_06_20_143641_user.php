@@ -19,8 +19,7 @@ return new class extends Migration
             $table->string('ni')->nullable(); // Membuat kolom nim menjadi opsional (nullable)
             $table->timestamps();
 
-            // Foreign key constraint jika perlu
-            // $table->foreign('nim')->references('nim')->on('mahasiswa')->onDelete('cascade');
+           
         });
     }
 

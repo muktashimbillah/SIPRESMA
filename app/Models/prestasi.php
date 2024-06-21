@@ -22,9 +22,4 @@ class prestasi extends Model
         'bukti_kegiatan',
         'foto_diri',
     ];
-
-    public function mahasiswa()
-    {
-        return $this->belongsTo(Mahasiswa::class, 'nim', 'nim');
-    }
 }
