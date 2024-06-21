@@ -32,14 +32,14 @@
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
          <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.html">Akademik</a>
-            <a class="collapse-item" href="cards.html">Non Akademik</a>
+            <a class="collapse-item" href="#pretasi-akademik">Akademik</a>
+            <a class="collapse-item" href="#prestasi-non-akadeik">Non Akademik</a>
          </div>
       </div>
    </li>
 
    <li class="nav-item ">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="{{ route('mahasiswa.list') }}">
          <i class="fas fa-fw fa-bars"></i>
          <span>Daftar Mahasiswa Prestasi</span></a>
    </li>
@@ -47,7 +47,7 @@
    <!-- Divider -->
    <!-- <hr class="sidebar-divider"> -->
    <li class="nav-item ">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="#prestasi-create">
          <i class="fas fa-fw fa-archive"></i>
          <span>Laporkan Prestasi</span></a>
    </li>
@@ -55,7 +55,7 @@
 
    <!-- <hr class="sidebar-divider"> -->
    <li class="nav-item ">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="#akun-pengaturan">
          <i class="fas fa-fw fa-key"></i>
          <span>Pengaturan Pendaftaran</span></a>
    </li>

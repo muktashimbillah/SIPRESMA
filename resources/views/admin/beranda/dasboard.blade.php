@@ -2,5 +2,5 @@
 
 @section('main')
 
-<p>djnddjn</p>
+<h1>Halo Selamat Datang</h1>
 @endsection

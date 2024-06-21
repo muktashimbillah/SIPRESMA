@@ -5,6 +5,7 @@ use App\Http\Controllers\homepage\beranda;
 use App\Http\Controllers\homepage\login;
 use App\Http\Controllers\homepage\register;
 use App\Http\Controllers\admin\beranda as dashboard;
+use App\Http\Controllers\admin\mahasiswa;
 
 
 Route::get('/', function () {
@@ -25,5 +26,12 @@ Route::middleware('guest')->group(function () {
 // Routes for authenticated users
 Route::middleware('auth')->group(function () {
     Route::get('dashboard', [dashboard::class, 'index'])->name('dashboard');
+
+    Route::get('mahasiswa', [mahasiswa::class, 'list'])->name('mahasiswa.list');
+    Route::get('mahasiswa-edit', [mahasiswa::class, 'list'])->name('mahasiswa.edit');
+    Route::post('mahasiswa-delete', [mahasiswa::class, 'list'])->name('mahasiswa.delete');
+    Route::get('mahasiswa-create', [mahasiswa::class, 'create'])->name('mahasiswa.create');
+    Route::post('mahasiswa-create', [mahasiswa::class, 'list'])->name('mahasiswa.create');
+
     Route::post('logout', [Login::class, 'logout'])->name('logout');
 });
