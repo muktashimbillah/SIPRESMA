@@ -12,13 +12,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Memanggil seeder untuk tabel dosen
-        $this->call(dosen::class);
-
-        // Memanggil seeder untuk tabel mahasiswa
-        $this->call(mahasiswa::class);
 
         // Memanggil seeder untuk tabel users
-        $this->call(user::class);
+        $this->call(CategorySeeder::class);
+        $this->call(UserTableSeeder::class);
     }
 }

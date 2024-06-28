@@ -5,10 +5,10 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class beranda extends Controller
+class dashboard extends Controller
 {
     public function index()
     {
-        return view('admin.beranda.dasboard');
+        return view('admin.dashboard.dasboard');
     }
 }

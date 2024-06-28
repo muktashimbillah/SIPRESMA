@@ -10,23 +10,21 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
-    protected $table = 'users';
-
     protected $fillable = [
-        'email',
-        'ni',
-        'role',
-        'password',
+        'name', 'email', 'password', 'role',
     ];
 
-    // Kolom yang disembunyikan saat serialisasi
     protected $hidden = [
-        'password',
-        // 'remember_token',
+        'password', 'remember_token',
     ];
 
-    // Kolom yang harus dikonversi ke tipe data asli
-    // protected $casts = [
-    //     'email_verified_at' => 'datetime',
-    // ];
+    public function bills()
+    {
+        return $this->hasMany(Bill::class);
+    }
+
+    public function meterReadings()
+    {
+        return $this->hasMany(MeterReading::class);
+    }
 }

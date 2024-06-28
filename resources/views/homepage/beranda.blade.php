@@ -18,9 +18,29 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <style>
-        .logo-homepage {
-            background-color: rgba(10, 6, 244, 1);
-            height: 40px;
+        .logo-div {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            /* Untuk menghilangkan underline pada link */
+        }
+
+        .logo-div img {
+            width: 25px;
+        }
+
+        .logo-div span {
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 20px;
+            text-decoration: none;
+            margin-left: 10px;
+            color: black;
+            font-family: sans-serif;
+        }
+
+        .logo-div:hover {
+            text-decoration: none;
         }
     </style>
 
@@ -33,8 +53,13 @@
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow px-3">
-                    <img class="logo-homepage" src="../img/logo/logo-long.png" alt="">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <a class="logo-div" href="{{ route('homepage') }}">
+                        <img src="{{ asset('img/logo/logo.png') }}" alt="logo">
+                        <span>PLTA Desa Suka Maju</span>
+                    </a>
+
+                    <!-- <img class="logo-homepage" src="../img/logo/logo-long.png" alt=""> -->
                     <!-- Sidebar Toggle (Topbar) -->
 
                     <!-- Topbar Navbar -->
@@ -42,8 +67,8 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item no-arrow">
-                            <a type="button" href="{{ route('login') }}" class="btn btn-outline-primary">Masuk</a>
-                            <a type="button" href="{{ route('register') }}" class=" btn btn-primary mr-2">Daftar</a>
+                            <a type="button" href="{{ route('login') }}" class="btn btn-outline-primary mr-2">Masuk</a>
+                            <a type="button" href="{{ route('register') }}" class=" btn btn-primary">Daftar</a>
                         </li>
 
                     </ul>

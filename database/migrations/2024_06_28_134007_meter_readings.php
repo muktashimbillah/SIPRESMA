@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dosen', function (Blueprint $table) {
+        Schema::create('meter_readings', function (Blueprint $table) {
             $table->id();
-            $table->string('fotoprofil')->nullable();
-            $table->string('nama_lengkap');
-            $table->string('nip')->unique();
-            $table->string('notelp')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('category_id');
+            $table->date('reading_date');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dosen');
+        Schema::dropIfExists('meter_readings');
     }
 };
