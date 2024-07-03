@@ -59,7 +59,7 @@
                     </div>
                     <div class="card-body px-4">
                         <!-- Form untuk masuk -->
-                        <form action="{{ route('login') }}" method="POST">
+                        <form action="{{ route('actionlogin') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required placeholder="Masukkan email">

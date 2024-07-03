@@ -19,4 +19,8 @@ class Bill extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function meterReading()
+    {
+        return $this->belongsTo(MeterReading::class);
+    }
 }

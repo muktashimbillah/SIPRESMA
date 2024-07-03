@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('meter_readings', function (Blueprint $table) {
             $table->id();
+            $table->string('number_parameter')->unique();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('category_id');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->date('reading_date');
             $table->timestamps();
         });

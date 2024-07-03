@@ -7,8 +7,10 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Bill;
+use App\Models\categori;
 use App\Models\MeterReading;
 use Carbon\Carbon;
+
 
 class UserTableSeeder extends Seeder
 {
@@ -34,24 +36,46 @@ class UserTableSeeder extends Seeder
 
         // Mengisi data tagihan dan pengukuran kWh untuk setiap user
         foreach ($users as $user) {
-            // Membuat beberapa tagihan untuk setiap user
-            for ($i = 0; $i < 3; $i++) {
-                Bill::create([
-                    'user_id' => $user->id,
-                    'amount' => rand(50, 500), // Jumlah tagihan acak antara 50 dan 500
-                    'due_date' => Carbon::now()->addDays(rand(1, 30)), // Tagihan jatuh tempo acak dalam 30 hari
-                    'paid_status' => rand(0, 1), // Status pembayaran acak (0: belum dibayar, 1: sudah dibayar)
-                    'paid_at' => rand(0, 1) ? Carbon::now()->subDays(rand(1, 30)) : null, // Tanggal pembayaran acak dalam 30 hari terakhir
-                ]);
-            }
-
             // Membuat beberapa pengukuran kWh untuk setiap user
-            for ($j = 0; $j < 12; $j++) {
-                MeterReading::create([
+            for ($j = 0; $j < 2; $j++) {
+                $meterReading = MeterReading::create([
                     'user_id' => $user->id,
-                    'category_id' => rand(1, 8), // Pilih secara acak dari kategori yang sudah ada
+                    'number_parameter' => str_pad(rand(0, 9999999999), 10, '0', STR_PAD_LEFT), // Nomor parameter acak 10 digit
+                    'category_id' => rand(
+                        1,
+                        8
+                    ), // Pilih secara acak dari kategori yang sudah ada
                     'reading_date' => Carbon::now()->subMonths(12)->addMonths(rand(0, 11)), // Tanggal pengukuran kWh dalam 12 bulan terakhir
                 ]);
+
+                // Ambil kategori untuk mendapatkan harga yang sesuai
+                $category = categori::find($meterReading->category_id);
+
+                // Pastikan kategori ditemukan
+                if ($category) {
+                    // Hitung jumlah tagihan berdasarkan harga kategori
+                    $amount = $category->price; // Sesuaikan perhitungan sesuai dengan logika aplikasi Anda
+
+                    // Buat tagihan pertama bulan ini yang sudah dibayar
+                    Bill::create([
+                        'user_id' => $user->id,
+                        'meter_reading_id' => $meterReading->id,
+                        'amount' => $amount,
+                        'due_date' => Carbon::now()->subDays(rand(1, 15)), // Tagihan jatuh tempo acak dalam 15 hari terakhir
+                        'paid_status' => 1, // Status pembayaran (1: sudah dibayar)
+                        'paid_at' => Carbon::now()->subDays(rand(1, 15)), // Tanggal pembayaran acak dalam 15 hari terakhir
+                    ]);
+
+                    // Buat tagihan bulan ini yang belum dibayar
+                    Bill::create([
+                        'user_id' => $user->id,
+                        'meter_reading_id' => $meterReading->id,
+                        'amount' => $amount,
+                        'due_date' => Carbon::now()->addDays(rand(1, 30)), // Tagihan jatuh tempo acak dalam 30 hari
+                        'paid_status' => 0, // Status pembayaran (0: belum dibayar)
+                        'paid_at' => null, // Tanggal pembayaran null karena belum dibayar
+                    ]);
+                }
             }
         }
     }
